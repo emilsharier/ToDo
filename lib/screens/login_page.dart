@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_firestore/critical_functions/auth_stream.dart';
 import 'package:todo_firestore/screens/home_page.dart';

@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_firestore/critical_functions/auth_stream.dart';
+import 'package:todo_firestore/screens/add_todo.dart';
+import 'package:todo_firestore/screens/home_page.dart';
 import 'package:todo_firestore/screens/login_page.dart';
 
 void main() => runApp(MyApp());
@@ -13,6 +15,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   bool _isLoading;
   Model model = Model();
+  String name = "";
 
   @override
   void initState() {
@@ -21,6 +24,7 @@ class _MyAppState extends State<MyApp> {
     FirebaseAuth.instance.currentUser().then((user) {
       if (user != null) {
         _isLoading = false;
+        name = user.email;
       }
     });
     super.initState();
@@ -34,10 +38,21 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AddToDo(name),
+              ),
+            );
+          },
+        ),
         appBar: AppBar(
           title: Text("ToDo"),
         ),
-        body: (_isLoading == true) ? _displayLoadingIndicator() : LoginPage(),
+        body: (_isLoading == true) ? LoginPage() : HomePage(),
       ),
     );
   }
