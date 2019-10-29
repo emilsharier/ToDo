@@ -47,7 +47,7 @@ class _AddToDoState extends State<AddToDo> {
               String formattedTime =
                   DateFormat('kk:mm:ss EEE d MMM').format(now);
               Firestore.instance
-                  .collection("ToDo")
+                  .collection("todo")
                   .document(widget.name)
                   .collection("items")
                   .document(formattedTime)

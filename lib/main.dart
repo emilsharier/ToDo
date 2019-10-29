@@ -38,17 +38,6 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => AddToDo(name),
-              ),
-            );
-          },
-        ),
         appBar: AppBar(
           title: Text("ToDo"),
         ),
